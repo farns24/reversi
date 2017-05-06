@@ -14,6 +14,12 @@ public class View {
 		this.model = model;
 	}
 	private Model model;
+	public Model getModel() {
+		return model;
+	}
+	public void setModel(Model model) {
+		this.model = model;
+	}
 	public void draw()
 	{
 		System.out.println("Board");
@@ -36,5 +42,6 @@ public class View {
 			}
 			System.out.println("");
 		}
+		System.out.printf("White: %d    Black: %d", model.getScore().getWhiteScore(),model.getScore().getBlackScore());
 	}
 }

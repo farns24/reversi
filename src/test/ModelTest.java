@@ -185,5 +185,47 @@ public class ModelTest {
 		
 	}
 	
+	@Test
+	public void testInvslidPaths()
+	{
+		Model m = new Model(8);
+		View v = new View(m);
+		try {
+			m.move(4, 4, Player.Black);
+		} catch (InvalidMoveException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			m.move(3, 3, Player.Black);
+		} catch (InvalidMoveException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			m.move(4,3, Player.White);
+		} catch (InvalidMoveException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			m.move(3, 4, Player.White);
+		} catch (InvalidMoveException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		v.draw();
+		
+		try {
+			m.move(2, 5, Player.White);
+			fail("Invalid Move");
+		} catch (InvalidMoveException e) {
+			// TODO Auto-generated catch block
+			
+		}
+	}
+	
 
 }

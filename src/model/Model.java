@@ -9,6 +9,8 @@ public class Model {
 	private Piece[][] data;
 
 	private int center;
+
+	private Position lastMove;
 	public Model(int size) {
 		super();
 		data = new Piece[size][size];
@@ -115,6 +117,8 @@ public class Model {
 			piece = new WhitePiece();
 		}
 		
+		//update last move
+		lastMove = new Position(x, y);
 		data[y][x] = piece;
 		
 		//Check to see if game is over.
@@ -324,6 +328,10 @@ public class Model {
 			}
 			
 			return Outcome.True;
+		}
+		else if (data[y][x].isMyPiece(player)&& !otherFound.isOtherFound())
+		{
+			return Outcome.False;
 		}
 		return Outcome.Inconclusive;
 	}

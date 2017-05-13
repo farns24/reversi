@@ -11,7 +11,7 @@ import view.View;
 public class Game {
 
     private UI ui = new UI();
-    private String usage = "reversi <h/c> <h/c> <board size> [<depth>]";
+    private String usage = "<h/c> <h/c> <board size> [<depth>]";
     private int alphaBound = -50;
     private int betaBound = 50;
 
@@ -24,23 +24,23 @@ public class Game {
             return;
         }
 
-        int boardSize = Integer.parseInt(args[3]);
+        int boardSize = Integer.parseInt(args[2]);
         int depth = 3;
-        if (args.length == 5) depth = Integer.parseInt(args[4]);
+        if (args.length == 5) depth = Integer.parseInt(args[3]);
 
-        if (args[1].equals("c") && args[2].equals("c")) {
+        if (args[0].equals("c") && args[1].equals("c")) {
             g.ui.displayIntro("computer", "computer", boardSize, depth);
             g.playCvC(boardSize, depth);
         }
-        if (args[1].equals("h") && args[2].equals("c")) {
+        if (args[0].equals("h") && args[1].equals("c")) {
             g.ui.displayIntro("human", "computer", boardSize, depth);
             g.playHvC(boardSize, depth);
         }
-        if (args[1].equals("c") && args[2].equals("h")) {
+        if (args[0].equals("c") && args[1].equals("h")) {
             g.ui.displayIntro("computer", "human", boardSize, depth);
             g.playCvH(boardSize, depth);
         }
-        if (args[1].equals("h") && args[2].equals("h")) {
+        if (args[0].equals("h") && args[1].equals("h")) {
             g.ui.displayIntro("human", "human", boardSize, -1);
             g.playHvH(boardSize);
         }
@@ -48,11 +48,11 @@ public class Game {
 
     private boolean verify(String[] args) {
         if (args.length < 4 || args.length > 5) return false;
+        if (!args[0].equals("h") && !args[0].equals("c")) return false;
         if (!args[1].equals("h") && !args[1].equals("c")) return false;
-        if (!args[2].equals("h") && !args[2].equals("c")) return false;
         int size;
         try {
-            size = Integer.parseInt(args[3]);
+            size = Integer.parseInt(args[2]);
         } catch (NumberFormatException e) {
             return false;
         }
@@ -61,7 +61,7 @@ public class Game {
         if (args.length == 5) {
             int depth;
             try {
-                depth = Integer.parseInt(args[4]);
+                depth = Integer.parseInt(args[3]);
             } catch (NumberFormatException e) {
                 return false;
             }

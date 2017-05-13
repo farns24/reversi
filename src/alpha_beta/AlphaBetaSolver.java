@@ -34,7 +34,9 @@ public class AlphaBetaSolver {
 				return new AlphaBetaResult(0, posFutures.get(0));
 			}
 			for (Model child : posFutures) {
-				
+
+				//Look deeper if considering corner
+//				depth += child.getInterestingLevel();
 				int score = alphabeta(child, depth - 1, alphaBound, betaBound, false,player).getValue();
 				if (score>v)
 				{

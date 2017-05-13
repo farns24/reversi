@@ -9,12 +9,14 @@ public class Model {
 	private Piece[][] data;
 
 	private int center;
+	private int interestingLevel;
 
 	private Position lastMove;
 	public Model(int size) {
 		super();
 		data = new Piece[size][size];
 		center = (size/2);
+		interestingLevel = 0;
 	}
 	
 	public Model(Model other)
@@ -368,6 +370,7 @@ public class Model {
 				Model posFuture = new Model(this);
 				try {
 					posFuture.move(i,j, player);
+					posFuture.setInterestingLevel(calcInterestingLevel(i,j,data.length));
 					results.add(posFuture);
 				} catch (InvalidMoveException e) {
 				
@@ -388,5 +391,23 @@ public class Model {
 		}
 		return score.whiteScore;
 	}
-	
+
+	private int calcInterestingLevel(int i, int j, int boardSize) {
+		//Return value 1 if corner
+		int cornerAdjustment = 1;
+		if (i == 0 && j == 0) return cornerAdjustment;
+		if (i == 0 && j == boardSize-1) return cornerAdjustment;
+		if (i == boardSize-1 && j == 0) return cornerAdjustment;
+		if (i == boardSize-1 && j == boardSize-1) return cornerAdjustment;
+
+		return 0;
+	}
+
+	public int getInterestingLevel() {
+		return interestingLevel;
+	}
+
+	private void setInterestingLevel(int interestingLevel) {
+		this.interestingLevel = interestingLevel;
+	}
 }

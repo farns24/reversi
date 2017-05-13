@@ -26,7 +26,7 @@ public class Game {
 
         int boardSize = Integer.parseInt(args[2]);
         int depth = 3;
-        if (args.length == 5) depth = Integer.parseInt(args[3]);
+        if (args.length == 4) depth = Integer.parseInt(args[3]);
 
         if (args[0].equals("c") && args[1].equals("c")) {
             g.ui.displayIntro("computer", "computer", boardSize, depth);

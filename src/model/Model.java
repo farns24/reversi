@@ -152,7 +152,7 @@ public class Model {
 	private boolean Check4PathSE(int x, int y, Player player) {
 		List<Position> piecesToflip = new ArrayList<Position>();
 		OtherFinder otherFound = new OtherFinder();
-		while(++x>data.length && ++y <data.length)
+		while(++x<data.length && ++y <data.length)
 		{
 			
 			Outcome out = checkStep(x,y,otherFound, piecesToflip,player);

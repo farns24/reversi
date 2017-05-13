@@ -26,6 +26,9 @@ public class AlphaBetaSolver {
 			v = Integer.MIN_VALUE;
 			Model bestChild = null;
 			List<Model> posFutures = model.getPosFutures(player,maximizingPlayer);
+			if (posFutures.size()==0) {
+				return new AlphaBetaResult(0, model);
+			}
 			if (posFutures.size()==1)
 			{
 				return new AlphaBetaResult(0, posFutures.get(0));
@@ -54,6 +57,9 @@ public class AlphaBetaSolver {
 			v = Integer.MAX_VALUE;
 			Model bestChild = null;
 			List<Model> posFutures =model.getPosFutures(player,maximizingPlayer);
+			if (posFutures.size()==0) {
+				return new AlphaBetaResult(0, model);
+			}
 			if (posFutures.size()==1)
 			{
 				return new AlphaBetaResult(0, posFutures.get(0));

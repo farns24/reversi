@@ -23,8 +23,22 @@ public class View {
 	public void draw()
 	{
 		System.out.println("Board");
+		System.out.print("    ");
+		for (int i = 0; i < model.getData().length; i++) {
+			System.out.printf(" %d ",i);
+		}
+		System.out.println();
+
+		System.out.print("    ");
+		for (int i = 0; i < model.getData().length; i++) {
+			System.out.printf("---",i);
+		}
+		System.out.println();
+
+		int i = 0;
 		for (Piece[] row : model.getData())
 		{
+			System.out.printf(" %d |", i++);
 			for (Piece square : row)
 			{
 				if (square == null)
@@ -43,5 +57,7 @@ public class View {
 			System.out.println("");
 		}
 		System.out.printf("White: %d    Black: %d", model.getScore().getWhiteScore(),model.getScore().getBlackScore());
+		System.out.println("");
+		System.out.println("");
 	}
 }
